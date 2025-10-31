@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1728, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bicycles - XDS</title>
+    
+    <!-- 引入组件CSS -->
+    <link rel="stylesheet" href="components.css">
+    
+    <style>
+        :root {
+            /* Colors - 参考 index.html 的 Design Tokens */
+            --color-bg-black: #23262B;
+            --color-text-primary: #F4F6F6;
+            --color-text-secondary: #9C9C9C;
+            --color-white: #FFFFFF;
+            
+            /* Overlays */
+            --overlay-navbar: rgba(0, 0, 0, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;700&family=Inter:wght@200;300;700&display=swap');
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--color-bg-black);
+            color: var(--color-text-primary);
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bicycles-page {
+            width: 1728px;
+            height: 8391px;
+            position: relative;
+            transform-origin: top left;
+            background: var(--color-bg-black);
+        }
+        
+        /* ==================== Hero Section ==================== */
+        .hero-section {
+            position: absolute;
+            left: -8.5px;
+            top: 0;
+            width: 1744px;
+            height: 1163px;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('picture/bicycles-hero-bg.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-content {
+            position: absolute;
+            left: 168px;
+            top: 374px;
+            width: 1400px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 96px;
+            line-height: 1em;
+            color: #F4F6F6;
+            width: 100%;
+            height: 110px;
+        }
+        
+        .hero-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 32px;
+            line-height: 1.25em;
+            color: #F4F6F6;
+            width: 100%;
+            height: 88px;
+        }
+        
+        /* ==================== Filter Buttons ==================== */
+        .filter-section {
+            position: absolute;
+            left: 42.5px;
+            top: 987px;
+            width: 1643px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 229px;
+        }
+        
+        .filter-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 200;
+            font-size: 36px;
+            line-height: 1.2102272245619032em;
+            color: #FFFFFF;
+            transition: font-weight 0.3s ease;
+            padding: 0;
+            height: auto;
+        }
+        
+        .filter-btn:hover {
+            font-weight: 400;
+        }
+        
+        .filter-btn.active {
+            font-weight: 700;
+        }
+        
+        .filter-btn:nth-child(1) {
+            width: 515px;
+            padding: 42px 134px;
+        }
+        
+        .filter-btn:nth-child(2),
+        .filter-btn:nth-child(3) {
+            width: 515px;
+            padding: 42px 134px;
+        }
+        
+        /* ==================== Bike Cards Section ==================== */
+        .bike-cards-section {
+            position: absolute;
+            left: 35px;
+            top: 1163px;
+            width: 1659px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .bike-card {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            gap: 10px;
+            padding: 60px 85px;
+            width: 100%;
+            height: 692px;
+            background: linear-gradient(90deg, rgba(48, 46, 56, 0.5) 0%, rgba(105, 105, 112, 0.8) 100%);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .bike-card-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-self: stretch;
+            gap: 79px;
+            width: 100%;
+        }
+        
+        .bike-card-image {
+            width: 926px;
+            height: 560px;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        
+        .bike-card-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 30px;
+            flex: 1;
+        }
+        
+        .bike-card-title {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 64px;
+            line-height: 0.9901961088180542em;
+            color: #F4F6F6;
+            text-align: right;
+        }
+        
+        .bike-card-description {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 1.25em;
+            color: #F4F6F6;
+            text-align: right;
+        }
+        
+        /* AD9 卡片特殊布局 */
+        .bike-card.ad9 .bike-card-content {
+            align-items: center;
+        }
+        
+        .bike-card.ad9 .bike-card-image {
+            width: 926px;
+            height: 560px;
+            background-size: contain;
+        }
+        
+        /* RT9 卡片特殊布局 */
+        .bike-card.rt9 .bike-card-content {
+            align-items: center;
+        }
+        
+        .bike-card.rt9 .bike-card-image {
+            width: 926px;
+            height: 560px;
+            background-size: contain;
+        }
+        
+        .bike-card.rt9 .bike-card-text {
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+        }
+        
+        /* RS9 卡片特殊布局 */
+        .bike-card.rs9 .bike-card-content {
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .bike-card.rs9 .bike-card-image {
+            width: 926px;
+            height: 560px;
+            background-size: contain;
+        }
+        
+        .bike-card.rs9 .bike-card-text {
+            align-items: flex-end;
+        }
+        
+        /* Placeholder 卡片 */
+        .bike-card.placeholder {
+            position: relative;
+        }
+        
+        .bike-card-placeholder-wrapper {
+            position: relative;
+            width: 926px;
+            height: 560px;
+            flex-shrink: 0;
+        }
+        
+        .bike-card-placeholder-wrapper .bike-card-image {
+            width: 926px;
+            height: 560px;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            position: relative;
+            z-index: 0;
+        }
+        
+        .bike-card-placeholder-text {
+            position: absolute;
+            width: 610px;
+            height: 269px;
+            left: 158px;
+            top: 145.5px;
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 96px;
+            line-height: 0.6601307392120361em;
+            color: #FFFFFF;
+            z-index: 1;
+            text-align: center;
+            pointer-events: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* ==================== Footer ==================== */
+        .footer-section {
+            position: absolute;
+            height: 623px;
+            left: 0%;
+            right: 0%;
+            top: 7768px;
+            background: var(--color-bg-black);
+        }
+        
+        .footer-section .signup-component {
+            position: absolute;
+            left: 164.1px;
+            top: 115px;
+            width: 514.3px;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: absolute;
+            left: 164px;
+            top: 398px;
+            width: 1399.81px;
+        }
+        
+        .footer-social {
+            flex: none;
+        }
+        
+        .footer-social svg {
+            width: 357px;
+            height: 44px;
+        }
+        
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            border: none;
+            flex: none;
+            align-self: stretch;
+        }
+        
+        .footer-divider svg {
+            width: 100%;
+            height: 1px;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 43px;
+            flex: none;
+        }
+        
+        .footer-info span {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 1.3020000457763672em;
+            color: #9C9C9C;
+            flex: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bicycles-page">
+        <!-- Navigation Bar - 使用组件 -->
+        <nav class="navbar-component">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo" aria-label="XDS Home"></a>
+                <div class="navbar-menu">
+                    <a href="bicycles.html" class="active">Bicycles</a>
+                    <a href="technology.html">Our Technology</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="https://form.typeform.com/to/Q2P1XMRa" target="_blank" rel="noopener noreferrer" class="navbar-dealer-btn">Become a Dealer</a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Explore Our Bicycles</h1>
+                <p class="hero-subtitle">World-class bicycles, made for everyone.</p>
+            </div>
+        </section>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <button class="filter-btn active">Road</button>
+            <button class="filter-btn">E-Bike</button>
+            <button class="filter-btn">Gravel</button>
+        </div>
+        
+        <!-- Bike Cards Section -->
+        <div class="bike-cards-section">
+            <!-- AD9 Card -->
+            <div class="bike-card ad9">
+                <div class="bike-card-content">
+                    <div class="bike-card-image" style="background-image: url('picture/bicycle-ad9.png');"></div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">AD9</h2>
+                        <p class="bike-card-description">The AD9 is our most aerodynamic bike, sharing the same frame as the Astana Pro Team. Wind tunnel tested, it rivals top aero bikes on the market. Perfect for flat sprints and racing, with striking Astana team paintwork.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RT9 Card -->
+            <div class="bike-card rt9">
+                <div class="bike-card-content">
+                    <div class="bike-card-image" style="background-image: url('picture/bicycle-rt9.png');"></div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RT9</h2>
+                        <p class="bike-card-description">The RT9 is built for climbing, with an ultra-light 540g carbon frame. Its stiffness and responsiveness ensure every pedal stroke counts. A pure choice for competitive climbers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RS9 Card -->
+            <div class="bike-card rs9">
+                <div class="bike-card-content">
+                    <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Placeholder Cards -->
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bike-card rs9 placeholder">
+                <div class="bike-card-content">
+                    <div class="bike-card-placeholder-wrapper">
+                        <div class="bike-card-image" style="background-image: url('picture/bicycle-rs9.png');"></div>
+                        <div class="bike-card-placeholder-text">Place Holder</div>
+                    </div>
+                    <div class="bike-card-text">
+                        <h2 class="bike-card-title">RS9</h2>
+                        <p class="bike-card-description">The RS9 is the flagship of the endurance line, delivering all-round performance and exceptional comfort for long-distance rides. Premium frames and components make it the choice for serious endurance cyclists.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer - 使用 Sign up 组件 -->
+        <footer class="footer-section">
+            <div class="signup-component">
+                <h2 class="signup-title">Be the first to know about product launches</h2>
+                <button class="signup-btn">
+                    <div class="signup-btn-inner">
+                        <div class="signup-btn-content">
+                            <span class="signup-btn-text">Sign up</span>
+                        </div>
+                        <div class="signup-btn-arrow">
+                            <div class="signup-btn-arrow-line"></div>
+                            <div class="signup-btn-arrow-head"></div>
+                        </div>
+                    </div>
+                </button>
+                
+                <!-- Newsletter Modal -->
+                <div class="newsletter-modal-overlay">
+                    <div class="newsletter-modal">
+                        <button class="modal-close-btn" type="button">
+                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.1895 1.27344L0.806641 15.6563" stroke="white" stroke-width="1.5"/>
+                                <path d="M0.806641 1.27344L15.1895 15.6563" stroke="white" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="modal-content-wrapper">
+                            <p class="modal-label">Newsletter</p>
+                            <h2 class="modal-heading">Be the first to know about product launches</h2>
+                        </div>
+                        
+                        <form id="newsletterModalForm4">
+                            <div class="modal-input-wrapper">
+                                <input type="email" class="modal-input" placeholder="Enter email" required>
+                            </div>
+                            <button type="submit" class="modal-submit-btn">
+                                <span>Submit</span>
+                                <div class="modal-submit-arrow"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <svg width="357" height="44" viewBox="0 0 357 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_907_1343)">
+                            <path d="M43.3125 22C43.3125 10.2266 33.7734 0.6875 22 0.6875C10.2266 0.6875 0.6875 10.2266 0.6875 22C0.6875 32.6373 8.48117 41.4545 18.6699 43.0547V28.1609H13.2559V22H18.6699V17.3044C18.6699 11.9634 21.8496 9.01312 26.7197 9.01312C29.052 9.01312 31.4909 9.42906 31.4909 9.42906V14.6713H28.8028C26.1559 14.6713 25.3301 16.3144 25.3301 17.9996V22H31.2409L30.2955 28.1609H25.3301V43.0547C35.5188 41.4545 43.3125 32.6373 43.3125 22Z" fill="white"/>
+                        </g>
+                        <g clip-path="url(#clip1_907_1343)">
+                            <path d="M123.509 12.1166C117.973 12.1166 113.507 16.5252 113.507 21.9908C113.507 27.4564 117.973 31.865 123.509 31.865C129.046 31.865 133.512 27.4564 133.512 21.9908C133.512 16.5252 129.046 12.1166 123.509 12.1166ZM123.509 28.4104C119.931 28.4104 117.006 25.5314 117.006 21.9908C117.006 18.4502 119.923 15.5713 123.509 15.5713C127.096 15.5713 130.012 18.4502 130.012 21.9908C130.012 25.5314 127.087 28.4104 123.509 28.4104ZM136.254 11.7127C136.254 12.9932 135.209 14.0158 133.921 14.0158C132.624 14.0158 131.588 12.9846 131.588 11.7127C131.588 10.4408 132.633 9.40957 133.921 9.40957C135.209 9.40957 136.254 10.4408 136.254 11.7127ZM142.879 14.0502C142.731 10.965 142.017 8.23223 139.727 5.98066C137.447 3.7291 134.678 3.02441 131.553 2.86973C128.332 2.68926 118.678 2.68926 115.457 2.86973C112.34 3.01582 109.572 3.72051 107.283 5.97207C104.993 8.22363 104.288 10.9564 104.131 14.0416C103.948 17.2213 103.948 26.7518 104.131 29.9314C104.279 33.0166 104.993 35.7494 107.283 38.001C109.572 40.2525 112.332 40.9572 115.457 41.1119C118.678 41.2924 128.332 41.2924 131.553 41.1119C134.678 40.9658 137.447 40.2611 139.727 38.001C142.008 35.7494 142.722 33.0166 142.879 29.9314C143.062 26.7518 143.062 17.2299 142.879 14.0502ZM138.718 33.3432C138.039 35.0275 136.724 36.3252 135.009 37.0041C132.441 38.0096 126.347 37.7775 123.509 37.7775C120.671 37.7775 114.569 38.001 112.01 37.0041C110.303 36.3338 108.989 35.0361 108.301 33.3432C107.283 30.808 107.518 24.7924 107.518 21.9908C107.518 19.1893 107.291 13.165 108.301 10.6385C108.98 8.9541 110.295 7.65645 112.01 6.97754C114.578 5.97207 120.671 6.2041 123.509 6.2041C126.347 6.2041 132.45 5.98066 135.009 6.97754C136.715 7.64785 138.03 8.94551 138.718 10.6385C139.736 13.1736 139.501 19.1893 139.501 21.9908C139.501 24.7924 139.736 30.8166 138.718 33.3432Z" fill="white"/>
+                        </g>
+                        <path d="M250.714 10.6634C250.168 8.63096 248.562 7.03029 246.522 6.48708C242.825 5.5 228.001 5.5 228.001 5.5C228.001 5.5 213.176 5.5 209.479 6.48708C207.439 7.03038 205.833 8.63096 205.287 10.6634C204.297 14.3473 204.297 22.0333 204.297 22.0333C204.297 22.0333 204.297 29.7194 205.287 33.4033C205.833 35.4357 207.439 36.9697 209.479 37.5129C213.176 38.5 228.001 38.5 228.001 38.5C228.001 38.5 242.825 38.5 246.522 37.5129C248.562 36.9697 250.168 35.4357 250.714 33.4033C251.704 29.7194 251.704 22.0333 251.704 22.0333C251.704 22.0333 251.704 14.3473 250.714 10.6634ZM223.152 29.0117V15.055L235.543 22.0335L223.152 29.0117Z" fill="white"/>
+                        <g clip-path="url(#clip2_907_1343)">
+                            <path d="M357 22C357 34.1501 347.15 44 335 44C322.85 44 313 34.1501 313 22C313 9.84986 322.85 0 335 0C347.15 0 357 9.84986 357 22ZM340.167 8.83539H335.743L335.637 8.94156V27.4145C335.637 27.8657 335.056 28.9303 334.752 29.2901C332.779 31.6257 328.866 30.7027 328.167 27.733C327.468 24.7633 330.146 22.407 333.015 23.1324V18.6381C332.971 18.5673 332.918 18.5466 332.838 18.5319C330.686 18.1574 328.025 19.1099 326.401 20.5166C322.301 24.0614 322.652 30.6024 327.12 33.6665C332.446 37.3174 339.524 33.8523 340.164 27.556V17.6826L342.051 18.7324C343.431 19.3458 344.944 19.685 346.466 19.6614V15.1316C343.021 15.1847 340.161 12.2651 340.167 8.83244V8.83539Z" fill="white"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_907_1343">
+                                <rect width="44" height="44" fill="white"/>
+                            </clipPath>
+                            <clipPath id="clip1_907_1343">
+                                <rect width="39" height="44" fill="white" transform="translate(104)"/>
+                            </clipPath>
+                            <clipPath id="clip2_907_1343">
+                                <rect width="44" height="44" fill="white" transform="translate(313)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <div class="footer-divider">
+                    <svg width="1400" height="1" viewBox="0 0 1400 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0.5H1399.81" stroke="#9C9C9C"/>
+                    </svg>
+                </div>
+                
+                <div class="footer-info">
+                    <span>hello@xds.co</span>
+                    <span>949-817-2115</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 引入组件JavaScript -->
+    <script src="components.js"></script>
+    
+    <script>
+        // 自动缩放脚本
+        function scaleToFit() {
+            const bicyclesPage = document.querySelector('.bicycles-page');
+            if (bicyclesPage) {
+                const designWidth = 1728;
+                const scale = window.innerWidth / designWidth;
+                bicyclesPage.style.transform = `scale(${scale})`;
+                document.body.style.height = `${8391 * scale}px`;
+            }
+        }
+        
+        window.addEventListener('load', scaleToFit);
+        window.addEventListener('resize', scaleToFit);
+        
+        // Filter 按钮切换
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
