@@ -1,0 +1,560 @@
+/* ==================== 组件化CSS文件 ==================== */
+/* 所有页面可复用的组件样式 */
+
+/* ==================== 导航栏组件 (Navbar Component) ==================== */
+.navbar-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 26px 118px 26px 101px;
+    gap: 10px;
+    
+    position: absolute;
+    height: 80px;
+    left: 0%;
+    right: 0%;
+    top: 0px;
+    z-index: 1000;
+    
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+}
+
+.navbar-component .navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    
+    width: 1440px;
+    height: 28px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.navbar-component .navbar-logo {
+    display: block;
+    width: 179px;
+    height: 32px;
+    background: url('picture/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.navbar-component .navbar-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 33px;
+    
+    width: 850px;
+    height: 40px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.navbar-component .navbar-menu a:nth-child(1) { width: 75px; }
+.navbar-component .navbar-menu a:nth-child(2) { width: 144px; }
+.navbar-component .navbar-menu a:nth-child(3) { width: 85px; }
+.navbar-component .navbar-menu a:nth-child(4) { width: 75px; }
+
+.navbar-component .navbar-menu a {
+    height: 26px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 26px;
+    color: #F4F6F6;
+    text-decoration: none;
+    flex: none;
+    flex-grow: 0;
+    white-space: nowrap;
+}
+
+.navbar-component .navbar-menu a:hover {
+    color: #FFFFFF;
+}
+
+.navbar-component .navbar-menu a.active {
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+/* Become a dealer button */
+.navbar-component .navbar-dealer-btn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 9px;
+    gap: 10px;
+    
+    width: 195px;
+    height: 40px;
+    
+    border: 1px solid #F4F6F6;
+    border-radius: 5px;
+    background: transparent;
+    
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.3020000457763672em;
+    color: #F4F6F6;
+    text-decoration: none;
+    
+    cursor: pointer;
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+    
+    /* 过渡效果 */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover 效果 */
+.navbar-component .navbar-dealer-btn:hover {
+    opacity: 0.6;
+    transform: scale(1.005);
+}
+
+/* Active/Click 效果 */
+.navbar-component .navbar-dealer-btn:active {
+    opacity: 0.6;
+    transform: scale(0.995);
+}
+
+/* ==================== Sign up 完整组件 (Signup Component) ==================== */
+/* 包括：标题、按钮、弹窗 - 一个完整的交互组件 */
+.signup-component {
+    /* Frame 75 - 组件容器 */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    
+    width: 514.3px;
+    flex: none;
+    flex-grow: 0;
+}
+
+/* 标题文字 */
+.signup-component .signup-title {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.3020000457763672em;
+    color: #F4F6F6;
+    flex: none;
+    align-self: stretch;
+}
+
+/* Sign up 按钮 */
+.signup-component .signup-btn {
+    box-sizing: border-box;
+    
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 35px;
+    gap: 10px;
+    
+    width: 247px;
+    height: 70px;
+    
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    background: transparent;
+    
+    /* 确保按钮本身不继承颜色 */
+    color: #FFFFFF;
+    
+    cursor: pointer;
+    
+    /* 重置所有默认样式 */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    text-decoration: none;
+    outline: none;
+    
+    /* 防止内容溢出 */
+    overflow: hidden;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.signup-component .signup-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Frame 1 - 按钮内部容器 */
+.signup-component .signup-btn-inner {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 30px;
+    
+    width: 177px;
+    height: 40px;
+    
+    /* 防止内容溢出 */
+    overflow: hidden;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Frame 2 - 文字容器 */
+.signup-component .signup-btn-content {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    
+    width: 109px;
+    height: 40px;
+    
+    /* 防止内容溢出 */
+    overflow: hidden;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Sign up text */
+.signup-component .signup-btn-text {
+    width: 109px;
+    height: 40px;
+    
+    /* Body 3 */
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 40px;
+    /* identical to box height, or 125% */
+    
+    /* Text 1 */
+    color: #F4F6F6;
+    
+    /* 防止文字换行 */
+    white-space: nowrap;
+    overflow: hidden;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Group 9 - 箭头容器 */
+.signup-component .signup-btn-arrow {
+    width: 22.91px;
+    height: 14px;
+    position: relative;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Vector 56 - 横线 */
+.signup-component .signup-btn-arrow-line {
+    position: absolute;
+    width: 22.91px;
+    height: 0px;
+    left: 0px;
+    top: 7px;
+    
+    /* Bg White 1 */
+    background: #FFFFFF;
+    border-top: 2.54545px solid #FFFFFF;
+}
+
+/* Vector 57 - 箭头尖 */
+.signup-component .signup-btn-arrow-head {
+    position: absolute;
+    width: 7px;
+    height: 14px;
+    left: 15.91px;
+    top: 0px;
+    
+    /* Bg White 1 */
+    background: #FFFFFF;
+    border: 2.54545px solid #FFFFFF;
+    box-sizing: border-box;
+    
+    /* 创建向右的三角形箭头 */
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+/* ==================== Newsletter Modal（弹窗） ==================== */
+.signup-component .newsletter-modal-overlay,
+.newsletter-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    /* 确保弹窗不受父元素 transform 影响 */
+    transform: none !important;
+    transform-origin: center center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.signup-component .newsletter-modal-overlay.active,
+.newsletter-modal-overlay.active {
+    display: flex !important;
+}
+
+/* Modal Card - Figma 精确尺寸 */
+.signup-component .newsletter-modal,
+.newsletter-modal {
+    position: relative;
+    width: 637px;
+    height: 423px;
+    background: linear-gradient(180deg, rgba(175, 175, 175, 0) 0%, rgba(44, 44, 44, 1) 100%);
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    padding: 81px 59px 54px 59px;
+    display: flex;
+    flex-direction: column;
+    /* 确保弹窗卡片不受父元素 transform 影响 */
+    transform: none !important;
+    margin: 0;
+    box-sizing: border-box;
+    /* 确保弹窗内容清晰显示 */
+    overflow: visible;
+}
+
+/* Close Button - X */
+.signup-component .modal-close-btn,
+.modal-close-btn {
+    position: absolute;
+    right: 42.36px;
+    top: 36px;
+    width: 15.64px;
+    height: 17px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.signup-component .modal-close-btn:hover,
+.modal-close-btn:hover {
+    opacity: 0.7;
+}
+
+.signup-component .modal-close-btn svg,
+.modal-close-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Frame 98 - Content Container */
+.signup-component .modal-content-wrapper,
+.modal-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 404px;
+    margin-bottom: 62px;
+    flex: none;
+}
+
+/* Newsletter Label */
+.signup-component .modal-label,
+.modal-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.25em;
+    color: #F4F6F6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading */
+.signup-component .modal-heading,
+.modal-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.3020000457763672em;
+    color: #F4F6F6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form 样式 */
+.signup-component form[id^="newsletterModalForm"],
+.signup-component #newsletterModalForm,
+#newsletterModalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    flex: none;
+}
+
+/* Input Field Group */
+.signup-component .modal-input-wrapper,
+.modal-input-wrapper {
+    width: 520px;
+    height: 26px;
+    position: relative;
+    flex: none;
+}
+
+/* Input Field */
+.signup-component .modal-input,
+.modal-input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #F4F6F6;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.226020676749093em;
+    color: #F4F6F6;
+    outline: none;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.signup-component .modal-input::placeholder,
+.modal-input::placeholder {
+    color: #F4F6F6;
+    opacity: 0.7;
+}
+
+.signup-component .modal-input:focus,
+.modal-input:focus {
+    border-bottom-color: #FFFFFF;
+}
+
+/* Submit Button */
+.signup-component .modal-submit-btn,
+.modal-submit-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: 208px;
+    height: 61px;
+    background: transparent;
+    border: 2px solid #F4F6F6;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4285714285714286em;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.signup-component .modal-submit-btn:hover,
+.modal-submit-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Submit 按钮中的文字 */
+.signup-component .modal-submit-btn span,
+.modal-submit-btn span {
+    color: #FFFFFF !important;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4285714285714286em;
+    white-space: nowrap;
+    flex: none;
+}
+
+/* Arrow in Submit Button */
+.signup-component .modal-submit-arrow,
+.modal-submit-arrow {
+    width: 22.91px;
+    height: 14px;
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+}
+
+.signup-component .modal-submit-arrow::before,
+.modal-submit-arrow::before {
+    content: '';
+    position: absolute;
+    width: 22.91px;
+    height: 2.54545px;
+    left: 0px;
+    top: 7px;
+    background: #FFFFFF;
+    z-index: 1;
+}
+
+.signup-component .modal-submit-arrow::after,
+.modal-submit-arrow::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    right: 0px;
+    top: 3.5px;
+    border-right: 2.54545px solid #FFFFFF;
+    border-top: 2.54545px solid #FFFFFF;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+

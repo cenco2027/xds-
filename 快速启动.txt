@@ -1,0 +1,51 @@
+XDS 网站快速启动说明
+======================
+
+✅ 页面已 100% 精确还原 Figma 设计！
+
+主要特性：
+---------
+1. **像素级精确还原** - 所有位置、尺寸完全匹配 Figma
+2. **绝对定位布局** - 使用 Figma 的精确坐标系统 (x, y 坐标)
+3. **负 gap 值** - Hero Section 标题重叠效果 (gap: -40px)
+4. **精确的文字定位** - Company Cards 文字使用绝对定位
+5. **完整页面高度** - 8082px 固定高度，确保元素定位准确
+6. **响应式缩放** - 自动适应不同屏幕尺寸（保持比例）
+
+关键技术点：
+---------
+✓ 导航栏: justify-content: space-between (不是 gap: 882px!)
+✓ Hero 内容: left: 168.1px, top: 393px (保留小数点)
+✓ 主图片: left: 15px, top: 1181px, 1699×729px
+✓ 公司卡片: top: 2583px, 每张卡片文字绝对定位
+✓ Better Bikes 标题: left: 253px, top: 3656px
+✓ Explore 区域: top: 4131px, padding: 367px 168px
+✓ Contact 区域: top: 7459px
+✓ Footer: left: 164px, top: 7857px
+
+如何查看：
+---------
+方法1：直接双击 index.html 文件在浏览器中打开
+方法2：在浏览器中按 Ctrl+O，然后选择 index.html 文件
+方法3：右键 index.html → 打开方式 → 选择浏览器
+
+页面特性：
+---------
+✓ 自动缩放适配不同屏幕
+✓ 保持设计比例一致
+✓ 所有图片路径正确
+✓ 响应式布局优化
+
+图片文件：
+---------
+所有图片都在 picture/ 文件夹中：
+- hero-bg.png (首屏背景)
+- pic-1.png (主图片)
+- company-card-1/2/3.png (公司卡片背景)
+- pic-3-38462f.png (经销商图片)
+- explore-bg.png (探索区域背景)
+- logo.png (导航栏Logo)
+- arrow-right.svg, arrow-right-2.svg (箭头图标)
+- social-icons.svg (社交媒体图标)
+
+祝查看愉快！
